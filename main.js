@@ -29,7 +29,7 @@ $(function() {
 					$('#tabs').append( div );
 				});
 			});
-			$( '#tabs').tabs();
+			$( "#tabs" ).tabs({ cookie: { expires: 7 } });
 		}
 	});
 });

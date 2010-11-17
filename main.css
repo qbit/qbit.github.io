@@ -1,0 +1,74 @@
+body {
+	font-size: 62.5%;
+}
+
+table {
+	font-size: 1em;
+}
+
+/* Site
+   -------------------------------- */
+
+body {
+	font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
+}
+
+/* Layout
+   -------------------------------- */
+
+.layout-grid {
+	width: 960px;
+}
+
+.layout-grid td {
+	vertical-align: top;
+}
+
+.layout-grid td.left-nav {
+	width: 140px;
+}
+
+.layout-grid td.normal {
+	border-left: 1px solid #eee;
+	padding: 20px 24px;
+	font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
+}
+
+
+/* Normal
+   -------------------------------- */
+
+.normal h3,
+.normal h4 {
+	margin: 0;
+	font-weight: normal;
+}
+
+.normal h3 {
+	padding: 0 0 9px;
+	font-size: 1.8em;
+}
+
+.normal h4 {
+	padding-bottom: 21px;
+	border-bottom: 1px dashed #999;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+.normal p {
+	font-size: 1.2em;
+}
+
+/* Demos */
+
+.normal a:link,
+.normal a:visited { color:#1b75bb; text-decoration:none; }
+.normal a:hover,
+.normal a:active { color:#0b559b; }
+
+
+.ui-draggable, .ui-droppable {
+	background-position: top left;
+}
+
