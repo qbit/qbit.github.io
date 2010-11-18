@@ -1,30 +1,49 @@
+var config = {
+	name: 'qbit',
+	url: "http://github.com/api/v2/json/repos/show/"
+};
+
 var createSubPage = function( data ) {
 	console.log( data );
+
+	var statul = $('<ul></ul>' );
+	statul.addClass( 'repo-stats' );
+
+	var wli = $( '<li></li>' );
+	wli.addClass( 'watchers watching' );
+	wli.html( $('<a></a>').addClass(  'tooltipped downwards' ).html( data.watchers ) );
+	wli.html( $('<a></a>').attr( 'href', 'https://github.com/' + config.name + '/' + data.name + '/watchers' ).addClass(  'tooltipped downwards' ).html( data.watchers ) );
+
+	var fli = $( '<li></li>' );
+	fli.addClass( 'forks' );
+	fli.html( $('<a></a>').attr( 'href', 'https://github.com/' + config.name + '/' + data.name + '/network' ).addClass(  'tooltipped downwards' ).html( data.forks ) );
+
+	statul.append( wli ).append( fli );
+
+	var descdiv = $( '<div></div>' );
+	descdiv.html( data.description );
+
 	var id = data.name.replace( /\./g, '_' );
-	var watch = $( '<button></button>' );
 	var title = $( '<h3></h3>' );
+	title.addClass( 'normal' );
 
-	title.html( $('<a></a>').attr( 'href', data.url ).val( data.name ) );
-	watch.addClass( 'watchers' );
-	watch.html( data.watchers + ' watching' );
-	watch.click( function() {
-
-	});
-	$('#'+id).append( title ).append( data.description ).append( watch );
+	title.html( data.name );
+	$('#'+id).append( title )
+		.append( statul )
+		.append( descdiv );
 };
 
 $(function() {
-	var name = 'qbit';
-	var url = "http://github.com/api/v2/json/repos/show/" + name + "/" ;
 	$.ajax({
 		type: "GET",
-		url: url,
+		url: config.url + config.name,
 		dataType: "jsonp",
 		success: function( result ) {
 			var ul = $( '<ul></ul>' );
 			$('#tabs').append( ul );
 			$.each( result, function( i, val ) {
 				$.each( val, function( i, r ) {
+					// Populate the tabs 
 					var friendly_name = r.name.replace( /\./g, '_' );
 					var a = $( '<a></a>' );
 					var li = $('<li></li>');

@@ -13,11 +13,28 @@ body {
 	font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
 }
 
+h3 {
+	display: inline !important;
+}
+
 #tabs {
 	left: 20%;
 	width: 60%;
 	height: 50%;
 }
+
+/* Stole this from github :D */
+ul.repo-stats{display:inline-block;*display:inline;margin-left:20;border:1px solid #ddd;-webkit-border-radius:3px;-moz-border-radius:3px;background:#fff;}
+ul.repo-stats li{list-style-type:none;display:inline-block;margin:0!important;}
+ul.repo-stats li a{display:inline-block;height:21px;padding:0 5px 0 23px;line-height:21px;color:#666;border-left:1px solid #ddd;background-repeat:no-repeat;background-position:5px -2px;}
+ul.repo-stats li:first-child a{border-left:none;margin-right:-3px;}
+ul.repo-stats li a:hover{color:#fff!important;background:#4183c4;text-decoration:none;background-repeat:no-repeat;background-position:5px -27px;}
+ul.repo-stats li:first-child a:hover{-webkit-border-top-left-radius:3px;-webkit-border-bottom-left-radius:3px;-moz-border-radius-topleft:3px;-moz-border-radius-bottomleft:3px;}
+ul.repo-stats li:last-child a:hover{-webkit-border-top-right-radius:3px;-webkit-border-bottom-right-radius:3px;-moz-border-radius-topright:3px;-moz-border-radius-bottomright:3px;}
+ul.repo-stats li.watchers a{background-image:url(images/repostat_watchers.png);}
+ul.repo-stats li.watchers.watching a{background-image:url(images/repostat_watchers-watching.png);color:#333;}
+ul.repo-stats li.forks a{background-image:url(images/repostat_forks.png);}
+ul.repo-stats li.forks.forked a{background-image:url(images/repostat_forks-forked.png);color:#333;}
 
 /* Layout
    -------------------------------- */
@@ -77,10 +94,3 @@ body {
 .ui-draggable, .ui-droppable {
 	background-position: top left;
 }
-
-.watchers a {
-	background-image: url( images/repostat_watchers.png );
-	margin:15px 0;
-	border-top:1px solid #ddd;
-}
-
