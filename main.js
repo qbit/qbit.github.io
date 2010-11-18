@@ -4,7 +4,6 @@ var config = {
 };
 
 var createSubPage = function( data ) {
-	console.log( data );
 
 	var statul = $('<ul></ul>' );
 	statul.addClass( 'repo-stats' );
