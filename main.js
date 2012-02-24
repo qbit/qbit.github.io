@@ -3,7 +3,8 @@ var config = {
 	url: "http://github.com/api/v2/json/repos/show/"
 };
 
-var createSubPage = function( data ) {
+
+var createSubPage = function( data, fn ) {
 
 	var statul = $('<ul></ul>' );
 	statul.addClass( 'repo-stats' );
@@ -30,16 +31,37 @@ var createSubPage = function( data ) {
 	$('#'+id).append( title )
 		.append( statul )
 		.append( descdiv );
+
+	if ( fn ) {
+		fn.call();
+	}
 };
 
-$(function() {
+
+$( 'document' ).ready( function() {
+	var tabs = $( '#tabs' );
+	var tc = $( '#tc' );
+	var tt = $( '#tt' );
+	var count = 0;
+
+	tt.addClass( 'nav nav-tabs' );
+	tc.addClass( 'tab-content' );
+
+	tabs.addClass( 'tabbable tabs-left' );
 	$.ajax({
 		type: "GET",
 		url: config.url + config.name,
 		dataType: "jsonp",
 		success: function( result ) {
-			var ul = $( '<ul></ul>' );
-			$('#tabs').append( ul );
+
+			result.repositories = result.repositories.sort( function( a, b ) {
+				var da = new Date( a.pushed_at ),
+					db = new Date( b.pushed_at );
+				if ( da > db ) return -1;
+				if ( da < db ) return 1;
+				return 0;
+			});
+
 			$.each( result, function( i, val ) {
 				$.each( val, function( i, r ) {
 					// Populate the tabs 
@@ -48,18 +70,27 @@ $(function() {
 					var li = $('<li></li>');
 					var div = $('<div></div>');
 
+					a.attr( 'data-toggle', 'tab' );
+
 					div.attr( 'id', friendly_name );
+
+					div.addClass( 'tab-pane' );
 
 					a.attr( 'href', '#' + friendly_name );
 					a.html( r.name );
 
+					if ( count === 0 ) {
+					}
+
 					li.append( a );
-					ul.append( li );
-					$('#tabs').append( div );
+					tt.append( li );
+					tc.append( div );
+
 					createSubPage( r );
+
+					count++;
 				});
 			});
-			$( "#tabs" ).tabs({ cookie: { expires: 7 } });
 		}
 	});
 });
