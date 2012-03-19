@@ -23,6 +23,9 @@ var createSubPage = function( data, fn ) {
 	var descdiv = $( '<div></div>' );
 	descdiv.html( data.description );
 
+	var readmediv = $( '<div>' );
+	readmediv.load( 'https://github.com/' + config.name +'/' + data.name + '/master/README.md' );
+
 	var id = data.name.replace( /\./g, '_' );
 	var title = $( '<h3></h3>' );
 	title.addClass( 'normal' );
@@ -30,7 +33,8 @@ var createSubPage = function( data, fn ) {
 	title.html( data.name );
 	$('#'+id).append( title )
 		.append( statul )
-		.append( descdiv );
+		.append( descdiv )
+		.append( readmediv );
 
 	if ( fn ) {
 		fn.call();
