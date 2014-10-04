@@ -1,6 +1,6 @@
 var config = {
 	name: 'qbit',
-	url: "http://github.com/api/v2/json/repos/show/"
+	url: "https://github.com/api/v2/json/repos/show/"
 };
 
 
